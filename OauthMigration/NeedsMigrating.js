@@ -1,8 +1,8 @@
 //Insert Your User and Org tokens
-const user = ''
-const organization = ''
+const user = 'H/yCmhFWqgJYTZwvsUiCUgfGPeCy8yocrVFyHsCVCSE='
+const organization = '9972019b3d4820b2b183bafb60d01704'
 //Insert the base Url for the environment
-const baseUrl = ''
+const baseUrl = 'staging'
 
 var request = require('request');
 let keepGoing = true;
@@ -97,10 +97,15 @@ function callback2(error, response, body) {
       newResp2 = newResp.map(newResp => newResp.token);
       newResp3 = newResp.map(newResp => newResp.id);
     } else {
-      console.log({
-        "elementTokens": newResp2,
-        "instanceIds": newResp3
-      })
+      console.dir(
+        {
+          "elementTokens": newResp2,
+          "instanceIds": newResp3
+        },
+        {
+          maxArrayLength: null
+        }
+      )
     }
 
     return newResp

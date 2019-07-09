@@ -1,4 +1,4 @@
-# Delete Duplicate Instances
+# Migrate OAuth1 Instances
 This script will help you migrate all QBO oauth1 instances to oauth2
 First, it will get all instances, page through and make sure to have all of them. Then
 filter it by elementkey (quickbooks) and authtype (oauth1). Then it will migrate all of the instances
