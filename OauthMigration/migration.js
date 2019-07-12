@@ -1,20 +1,20 @@
 // If you have run the NeedsMigrating script you will have gotten an array of element tokens returned you can use that array
 // to set elementTokens to or you can get element tokens for some elements you want to individual migrate and set
 // element tokens equal to an array of those. But elementTokens must be an array even if you are only using one token to migrate
-let elementTokens = ['bO2MmycVBcE8V+oiN3D2Pk4m/dckA9svOQVZBNgX+BQ=']
+let elementTokens = ['']
 
 // You will need to add the id and secret for the oauth application that you are migrating. You can't use any oauth2 creds
 // This specifically has to be the oauth2 creds associated with the oauth1 app you originally authenticated against
 // Quickbooks is now providing oauth2 creds for all oauth1 apps so that you can migrateToOauth2
 // You will also need to add the callback url to the oauth2 section of the application
-const client_id = 'Q0dwCAgJF16zh3W28xLdRrA9e3zlEDxdLOdKZiRbLH8IMogUyO'
-const client_secret = 'EssAuSVfnRQOIMR2otKxnNfwA9PWY4EWSRXHT4AK'
+const client_id = ''
+const client_secret = ''
 
 //Insert Your User and Org tokens
-const user = 'H/yCmhFWqgJYTZwvsUiCUgfGPeCy8yocrVFyHsCVCSE='
-const organization = '9972019b3d4820b2b183bafb60d01704'
+const user = ''
+const organization = ''
 //Insert the base Url for the environment (either api or staging)
-const baseUrl = 'staging'
+const baseUrl = ''
 
 const https = require('https');
 const request = require('request');
