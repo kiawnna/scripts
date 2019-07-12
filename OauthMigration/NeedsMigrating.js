@@ -1,8 +1,8 @@
 //Insert Your User and Org tokens
-const user = 'H/yCmhFWqgJYTZwvsUiCUgfGPeCy8yocrVFyHsCVCSE='
-const organization = '9972019b3d4820b2b183bafb60d01704'
+const user = ''
+const organization = ''
 //Insert the base Url for the environment
-const baseUrl = 'staging'
+const baseUrl = ''
 
 var request = require('request');
 let keepGoing = true;
