@@ -1,0 +1,6 @@
+ORG_SECRET=aaaaaaa
+USER_SECRET=bbbbbbb
+CE_ENV=STAGING
+ELEMENT_KEY=jiraonprem
+MODE=GET
+EMAIL_DOMAIN=cloud-elements.com

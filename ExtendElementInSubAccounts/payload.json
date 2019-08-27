@@ -1,0 +1,285 @@
+{
+  "id": 211593,
+  "createdDate": "2017-12-25T14:18:28Z",
+  "description": "Search for a worklogs",
+  "path": "/hubs/helpdesk/worklogs",
+  "vendorPath": "",
+  "method": "GET",
+  "vendorMethod": "GET",
+  "parameters": [{
+      "id": 443547,
+      "resourceId": 211593,
+      "createdDate": "2017-12-25T14:18:28Z",
+      "name": "page",
+      "vendorName": "page",
+      "description": "The page number. Defaults to 1 if not provided",
+      "type": "query",
+      "vendorType": "no-op",
+      "dataType": "string",
+      "vendorDataType": "string",
+      "source": "request",
+      "required": false
+    },
+    {
+      "id": 443546,
+      "resourceId": 211593,
+      "createdDate": "2017-12-25T14:18:28Z",
+      "name": "pageSize",
+      "vendorName": "pageSize",
+      "description": "The page size. Defaults to 200 if not provided",
+      "type": "query",
+      "vendorType": "no-op",
+      "dataType": "string",
+      "vendorDataType": "string",
+      "source": "request",
+      "required": false
+    },
+    {
+      "id": 443545,
+      "resourceId": 211593,
+      "createdDate": "2017-12-25T14:18:28Z",
+      "name": "where",
+      "vendorName": "where",
+      "description": "The CEQL search expression. Either id, updated or deleted is required. <b>Note</b>, the value for `updated` and `deleted` can be only `true`. To return results for specific ids, you should pass `id`, eg. <i> id in (10200,10300)</i>. To return updated or deleted results after a certain date you can pass since, eg. <i>updated='true'and since='121438013671562'</i> . If since is not passed, it will default to 0. To return extra properties on an updated or id request, you can pass expand, eg.<i>updated='true' and expand='issue.id,name'</i>. ",
+      "type": "query",
+      "vendorType": "query",
+      "dataType": "string",
+      "vendorDataType": "string",
+      "source": "request",
+      "required": true
+    }
+  ],
+  "model": {
+    "name": "worklogsList",
+    "transform": false,
+    "swagger": {
+      "updateAuthorAvatarUrls": {
+        "id": "updateAuthorAvatarUrls",
+        "properties": {
+          "16x16": {
+            "type": "string"
+          },
+          "24x24": {
+            "type": "string"
+          },
+          "32x32": {
+            "type": "string"
+          },
+          "48x48": {
+            "type": "string"
+          }
+        }
+      },
+      "visibility": {
+        "id": "visibility",
+        "properties": {
+          "type": {
+            "enum": [
+              "group",
+              "role"
+            ],
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "x-displayName": "Visibility"
+      },
+      "worklogsList": {
+        "id": "worklogsList",
+        "items": {
+          "$ref": "worklogsListObject"
+        },
+        "type": "array"
+      },
+      "avatarUrls": {
+        "id": "avatarUrls",
+        "properties": {
+          "16x16": {
+            "type": "string"
+          },
+          "24x24": {
+            "type": "string"
+          },
+          "32x32": {
+            "type": "string"
+          },
+          "48x48": {
+            "type": "string"
+          }
+        }
+      },
+      "authorWorklogs": {
+        "id": "authorWorklogs",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "avatarUrls": {
+            "type": "avatarUrls"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "self": {
+            "type": "string"
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        },
+        "x-displayName": "User"
+      },
+      "propertiesWorklog": {
+        "id": "propertiesWorklog",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "propertiesValue"
+          }
+        },
+        "x-displayName": "Entity Property",
+        "x-has-customfields": true,
+        "x-vendor-objectname": "properties"
+      },
+      "updateAuthor": {
+        "id": "updateAuthor",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "avatarUrls": {
+            "type": "updateAuthorAvatarUrls"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "self": {
+            "type": "string"
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        },
+        "x-displayName": "User"
+      },
+      "worklogsListObject": {
+        "id": "worklogsListObject",
+        "properties": {
+          "author": {
+            "type": "authorWorklogs"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "created": {
+            "format": "date-time",
+            "mask": "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "issueId": {
+            "type": "string"
+          },
+          "properties": {
+            "items": {
+              "$ref": "propertiesWorklog"
+            },
+            "type": "array"
+          },
+          "self": {
+            "type": "string"
+          },
+          "started": {
+            "format": "date-time",
+            "mask": "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+            "type": "string"
+          },
+          "timeSpent": {
+            "type": "string"
+          },
+          "timeSpentSeconds": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "updateAuthor": {
+            "type": "updateAuthor"
+          },
+          "updated": {
+            "format": "date-time",
+            "mask": "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+            "type": "string"
+          },
+          "updatedTime": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "visibility": {
+            "type": "visibility"
+          },
+          "worklogId": {
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "x-has-customfields": true,
+        "x-primary-key": [
+          "worklogId"
+        ],
+        "x-vendor-objectname": "worklog"
+      },
+      "propertiesValue": {
+        "id": "propertiesValue",
+        "properties": {}
+      }
+    }
+  },
+  "type": "api",
+  "rootKey": "|values",
+  "nextPageKey": "",
+  "hooks": [{
+    "id": 104134,
+    "resourceId": 211593,
+    "mimeType": "application/javascript",
+    "type": "preRequest",
+    "body": "var path; \nvar body = {}; \nvar method; \nvar expressionQuery = request_expression; \nvar request_param = {}; \nvar req_param = []; \nif (expressionQuery == null || expressionQuery == 'undefined') { \n done({ \n \"response_body\": { \n \"error\": \"Invalid query expression. A CEQL search expression should be in the form key='value'\" \n }, \n \"response_status_code\": 400, \n \"continue\": false \n }) \n} \n \nfor (var i = 0; i < expressionQuery.length; i++) { \n \n req_param[i] = expressionQuery[i].attribute; \n if (req_param[i] == 'deleted' || req_param[i]=='updated') { \n if (expressionQuery[i].value == 'false') { \n done({ \n \"response_body\": { \n \"error\": \"Only true is supported for updated and deleted parameters\" \n }, \n \"response_status_code\": 400, \n \"continue\": false \n }) \n \n } \n } \n \n} \nif ((!req_param.includes('id')) && (!req_param.includes('updated')) && (!req_param.includes('deleted'))) { \n done({ \n \"response_body\": { \n \"error\": \"Invalid filter. Either id, deleted or updated is required\" \n }, \n \"response_status_code\": 400, \n \"continue\": false \n }) \n} \n \nif ((req_param.includes('id') && req_param.includes('updated')) || \n (req_param.includes('id') && req_param.includes('deleted')) || \n (req_param.includes('deleted') && req_param.includes('updated')) || \n (req_param.includes('id') && req_param.includes('updated') && req_param.includes('deleted'))) { \n done({ \n \"response_body\": { \n \"error\": \"Only one of the parameters from id, deleted or updated are supported at a time\" \n }, \n \"response_status_code\": 400, \n \"continue\": false \n }) \n} \n \nrequest_param = request_vendor_parameters; \nfor (var i = 0; i < expressionQuery.length; i++) { \n var key = expressionQuery[i].attribute; \n var value = expressionQuery[i].value; \n if (key === 'id') { \n var temp = value.split(\",\").map(idValue => parseInt(idValue, 10)); \nbody = { \n \"ids\": temp \n} \n path = \"/rest/api/2/worklog/list\"; \n method = \"POST\"; \n \n } \n else if (key === 'deleted') { \n path = \"/rest/api/2/worklog/deleted\"; \n method = \"GET\"; \n body = null; \n } else if (key === 'updated') { \n path = \"/rest/api/2/worklog/updated\"; \n method = \"GET\"; \n body = null; \n }else if (key === 'expand') { \n request_param[key] = value.split(\",\").map(prop => prop.trim()).join(','); \n } \n else { \n request_param[key] = value; \n } \n} \nrequest_param['where'] = null; \ndone({ \n \"request_vendor_path\": path, \n \"request_vendor_body\": body, \n \"request_vendor_method\": method, \n \"request_vendor_parameters\": request_param \n})",
+    "isLegacy": false,
+    "contextParams": "request_vendor_parameters,request_vendor_path,request_vendor_body,request_vendor_method,response_body,response_status_code,request_expression"
+  }],
+  "response": {
+    "contentType": "application/json"
+  },
+  "paginationType": "VENDOR_NOT_SUPPORTED",
+  "ownerAccountId": 1,
+  "kind": "eb",
+  "modelMigrated": true
+}
