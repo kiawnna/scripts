@@ -14,7 +14,7 @@ Running this script in `CREATE` mode will create account admin users in each of 
 Use node version as defined in `.nvmrc`.  If you currently use nvm to manage node versions, cd into the project directory and run `nvm use`.
 
 ### Dotenv
-Requires a `.env` file in project root, copy the contents of `exampleEnv.txt` and paste them into your `.env` file.  Fill out each of the fields before running the script.
+Requires a `.env` file in project root, copy the contents of `exampleEnv.txt` and paste them into your `.env` file.  Fill out each of the fields before running the script.  Please note, the org/user secret provided in the `.env` file should be the credentials of an organization admininstrator.
 
 #### Modes
 There are two modes when running the delete script, GET or DELETE (as defined in the .env file).
