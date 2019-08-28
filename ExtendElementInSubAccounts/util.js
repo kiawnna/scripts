@@ -17,9 +17,9 @@ const baseUrl = () => {
 }
 
 const logError = (e) => {
-  try {
+  if (e.response && e.response.data && e.response.data.message && e.response.data.requestId) {
     console.error(`ERROR: ${e.response.data.message}, requestId: ${e.response.data.requestId}`);
-  } catch {
+  } else {
     console.error(e);
   }
 }
