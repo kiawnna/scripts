@@ -13,6 +13,9 @@ Running this script in CREATE or DELETE mode will create account admin users in 
 ### Node
 For the best results, use the node version defined in `.nvmrc`.  If you currently use nvm to manage node versions, cd into the project directory and run `nvm use`.
 
+### Install Packages
+To install dependencies, cd into the project directory and run `npm install`.
+
 ### Dotenv
 Requires a `.env` file in project root, copy the contents of `exampleEnv.txt` and paste them into your `.env` file.  Fill out each of the fields before running the script.  Please note, the org/user secret provided in the `.env` file should be the credentials of an organization admininstrator.  The script will log an error and exit if any of the required values in `.env` are null or undefined.
 
@@ -39,7 +42,7 @@ GET `/elements/{keyOrId}/resources` => find the resource ID in the response
 GET `/elements/{keyOrId}/resources/{resourceId}` => save this response in `payload.json`
 
 ## Running the Script
-Once your `.env` file is setup, cd into the project directory and type `npm start` or `node index.js` in the terminal.
+Once your `.env` file is setup and dependencies are installed (via npm), cd into the project directory and type `npm start` or `node index.js` in the terminal.
 
 ## FAQ
 _Is upsert supported?_
