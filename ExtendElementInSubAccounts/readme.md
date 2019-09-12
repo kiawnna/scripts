@@ -30,16 +30,16 @@ Requires a `.env` file in project root, copy the contents of `exampleEnv.txt` an
 #### Modes
 There are three modes when running this script, _GET_, _CREATE_ and _DELETE_ (as defined in the .env file).
 - GET will log the number of sub accounts the script found, no other actions will be taken.
-- CREATE will create a temporary account admin for each sub-account, then for each account, add the resource supplied in `payload.json` to the element (key) defined in `.env`.
-- DELETE will create a temporary account admin for each sub-account, then for each account, delete the resourse (based on the path and method) supplied in `payload.json` in the element (key) defined in `.env`.  Note: this will _not_ modify or delete the resources included in the generally available element (if there is one), even if the path and method match--only extended resources will be deleted.
+- CREATE will create a temporary account admin for each sub-account, then for each account, add the resource supplied in `resource.json` to the element (key) defined in `.env`.
+- DELETE will create a temporary account admin for each sub-account, then for each account, delete the resourse (based on the path and method) supplied in `resource.json` in the element (key) defined in `.env`.  Note: this will _not_ modify or delete the resources included in the generally available element (if there is one), even if the path and method match--only extended resources will be deleted.
 
 #### The Resource
 The resource you would like to add to a given element in your sub-accounts should be stored in `resource.json` (in the project root).  Note, the payload included in `resource.json` is an example, replace the contents of the file with your resource.
 
-#### How to I get the resource for payload.json?
+#### How to I get the resource for resource.json?
 This is the resource you would like to include for a given element in your sub accounts, no need to remove any fields from the payload.
 GET `/elements/{keyOrId}/resources` => find the resource ID in the response
-GET `/elements/{keyOrId}/resources/{resourceId}` => save this response in `payload.json`
+GET `/elements/{keyOrId}/resources/{resourceId}` => save this response in `resource.json`
 
 ## Running the Script
 Once your `.env` file is setup and dependencies are installed (via npm), cd into the project directory and type `npm start` or `node index.js` in the terminal.
