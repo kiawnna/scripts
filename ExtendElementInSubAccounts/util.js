@@ -1,6 +1,12 @@
 const axios = require('axios');
 const uuid = require('uuid/v4');
 const dotenv = require('dotenv');
+const https = require('https');
+
+const agent = new https.Agent({
+  keepAlive: true,
+  rejectUnauthorized: false
+});
 
 const headers = (userSecret = process.env.USER_SECRET) => {
   return {
@@ -38,7 +44,8 @@ const getAccounts = async (token) => {
 
   try {
     const res = await axios.get(url, {
-      headers: headers()
+      headers: headers(),
+      httpsAgent: agent
     });
     return res;
   } catch (e) {
@@ -86,7 +93,8 @@ const createUser = async (accountId) => {
     const res = await axios.post(
       `https://${baseUrl()}/elements/api-v2/accounts/${accountId}/users`,
       userPayload(), {
-        headers: headers()
+        headers: headers(),
+        httpsAgent: agent
       }
     );
     if (res.status == 200) return res.data;
@@ -99,7 +107,8 @@ const deleteUsers = async (users) => await Promise.all(users.map(u => deleteUser
 const deleteUser = async (user) => {
   try {
     const res = await axios.delete(`https://${baseUrl()}/elements/api-v2/organizations/users/${user.id}`, {
-      headers: headers()
+      headers: headers(),
+      httpsAgent: agent
     });
     if (res.status == 200) return res;
   } catch (e) {
