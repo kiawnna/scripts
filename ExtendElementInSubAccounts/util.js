@@ -19,9 +19,9 @@ const baseUrl = () => {
   switch (process.env.CE_ENV) {
     case 'STAGING':
       return 'staging.cloud-elements.com';
-    case 'PROD':
+    case 'US_PROD':
       return 'api.cloud-elements.com';
-    case 'PROD_EU':
+    case 'EU_PROD':
       return 'api.cloud-elements.co.uk';
   }
 };
