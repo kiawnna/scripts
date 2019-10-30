@@ -1,6 +1,12 @@
 const axios = require('axios');
 const { baseUrl, headers, logInfo, logError } = require('./util.js');
 const resource = require('./resource.json');
+const https = require('https');
+
+const agent = new https.Agent({
+  keepAlive: true,
+  rejectUnauthorized: false
+});
 
 const del = async (users) => {
   const toDelete = await getResources(users)
@@ -18,7 +24,8 @@ const getResource = async (user) => {
   try {
     const res = await axios.get(
       `https://${baseUrl()}/elements/api-v2/elements/${process.env.ELEMENT_KEY}/resources?accountOnly=true`, {
-        headers: headers(user.secret)
+        headers: headers(user.secret),
+        httpsAgent: agent
       }
     );
     if (res.status == 200) {
@@ -35,7 +42,8 @@ const deleteResource = async (id, user) => {
   try {
     const res = await axios.delete(
       `https://${baseUrl()}/elements/api-v2/elements/${process.env.ELEMENT_KEY}/resources/${id}`, {
-        headers: headers(user.secret)
+        headers: headers(user.secret),
+        httpsAgent: agent
       }
     );
     if (res.status == 200) return true;

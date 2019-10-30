@@ -19,6 +19,15 @@ To install dependencies, cd into the project directory and run `npm install`.
 ### Dotenv
 Requires a `.env` file in project root, copy the contents of `exampleEnv.txt` and paste them into your `.env` file.  Fill out each of the fields before running the script.  Please note, the org/user secret provided in the `.env` file should be the credentials of an organization admininstrator.  The script will log an error and exit if any of the required values in `.env` are null or undefined.
 
+| Field | Value |
+|-------|-------|
+| ORG_SECRET | The oranization secret for the relevant Cloud Elements environment (staging, prod) |
+| USER_SECRET | The oranization secret for an org admin in the relevant environment (staging, prod) |
+| CE_ENV | The Cloud Elements environment to run the script against (STAGING, US_PROD, EU_PROD) |
+| ELEMENT_KEY | The element key for which you wish to apply extensions in sub-accounts |
+| MODE | The mode to run the script in (GET, CREATE, DELETE) |
+| EMAIL_DOMAIN | Valid company email domain, used when creating users |
+
 ### Required Permissons for Org Admin and Account Admin Roles
 *Org Admin*
 - Add Account Users
