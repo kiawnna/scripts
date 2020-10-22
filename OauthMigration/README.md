@@ -1,8 +1,13 @@
-# Migrate OAuth1 Instances
-This script will help you migrate all QBO oauth1 instances to oauth2
-The first script will get all instances, paging through to make sure it has all of them. Then
-filter it by elementkey (quickbooks) and authtype (oauth1). Then it will migrate all of the instances
-that are found.
+# Migrate OAuth1 Instances--QBO
+
+## **IMPORTANT NOTE:**
+> This script was used when QBO migrated from oauth1 to oauth2 and is not applicable to other use-cases. Use this script as an example for how to interact with Cloud Elements APIs using a script.
+
+## Usage
+This script will help you migrate all QBO oauth1 instances to oauth2.
+
+The first script [NeedsMigrating.js](NeedsMigrating.js) will get all instances, paging through to make sure it has all of them. Then
+filter it by elementkey (quickbooks) and authtype (oauth1). Then the second script [migration.js](migration.js) will migrate all of the instances you wish to migrate.
 
 ## Usage
 1. Add your unique variables at the top of the js file
