@@ -1,5 +1,10 @@
 # Migrate a Resource from an Extended Element into Sub Account(s)
 
+## **IMPORTANT NOTE:**
+> The below Use Case is no longer valid. At present, any extension to an Element you make using Element Builder **will** be available in your other accounts automatically.
+> 
+> This script is here for informational purposes only. You can explore this script to better understand how to navigate and use numerous platform APIs if you'd like.
+
 ## Use Case
 Given an element that is extendable (using Element Builder), I would like to take an extension (a resource that is added/modified) from my default account, and update elements in each of my sub accounts accordingly.
 
