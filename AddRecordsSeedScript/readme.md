@@ -1,6 +1,3 @@
-  4. Add a disclaimer about API limits, don't use on prod systems
-
-
 # Add Records Progromatically
 The scripts contained in this directory (one for python and one for javascript) can be used to add records progromatically to a sandbox account for testing. The scripts are incredibly basic and meant to demonstrate a simple way to `POST` many records to an account/sandbox using Cloud Elements.
 
@@ -25,9 +22,9 @@ You will need to update the following fields/values for your script to work.
   * The `maxRecords` variable to designate the amount of records you want to `POST`.
 
 3. This script is intended for use with a `.env` file. While you can hard-code your secrets if you wish, creating a `.env` file with the following environment variables will automatically populate your secrets for you:
-  >  USER_SECRET = userSecretHere
-  >  ORGANIZATION_SECRET = organizationSecretHere
-  >  INSTANCE_TOKEN = instanceTokenHere
+  > USER_SECRET = userSecretHere
+  > ORGANIZATION_SECRET = organizationSecretHere
+  > INSTANCE_TOKEN = instanceTokenHere
 
 4. Currently in the `for loop`, upon a successful `POST` request, the status code, response body, and a message stating what number record out of the total (ie 4 out of 100 records) will be logged. You can update this to suite your needs/use-case as you see fit, as well as the error message returned when the status code is not a 200.
 
@@ -46,9 +43,9 @@ You will need to update the following in order for your script to run correctly.
   * The `maxRecords` variable to designate the amount of records you want to `POST`.
 
 3. This script is intended for use with a `.env` file. While you can hard-code your secrets if you wish, creating a `.env` file with the following environment variables will automatically populate your secrets for you:
-  >  USER_SECRET = userSecretHere
-  >  ORGANIZATION_SECRET = organizationSecretHere
-  >  INSTANCE_TOKEN = instanceTokenHere
+  > USER_SECRET = userSecretHere
+  > ORGANIZATION_SECRET = organizationSecretHere
+  > INSTANCE_TOKEN = instanceTokenHere
 
 4. Currently in the `loopRecords` function, upon a successful `POST` request, the status code, response body, and a message stating what number record out of the total (ie 4 out of 100 records) will be logged. You can update this to suite your needs/use-case as you see fit.
 
