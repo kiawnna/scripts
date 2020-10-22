@@ -1,7 +1,7 @@
 # Migrate OAuth1 Instances--QBO
 
 ## **IMPORTANT NOTE:**
-This script was used when QBO migrated from oauth1 to oauth2 and is not applicable to other use-cases. Use this script as an example for how to interact with Cloud Elements APIs using a script.
+> This script was used when QBO migrated from oauth1 to oauth2 and is not applicable to other use-cases. Use this script as an example for how to interact with Cloud Elements APIs using a script.
 
 ## Usage
 This script will help you migrate all QBO oauth1 instances to oauth2.
