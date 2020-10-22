@@ -44,7 +44,7 @@ headers = {
 url = f'https://staging.cloud-elements.com/elements/api-v2/{object}'
 
 try:
-    for i in range(0, 3):
+    for i in range(0, maxRecords):
         payload = generatePayload()
         response = requests.post(url=url, json=payload, headers=headers)
         if response.status_code == 200:
