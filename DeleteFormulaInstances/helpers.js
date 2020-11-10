@@ -22,9 +22,9 @@ const getEnv = () => {
   const e = process.env;
 
   return {
-    mode: e.MODE,
+    mode: e.MODE.toUpperCase(),
     templateIds: parseTemplateIds(e.FORMULA_TEMPLATE_IDS),
-    ceEnv: e.CE_ENV,
+    ceEnv: e.CE_ENV.toUpperCase(),
     userSecret: e.USER_SECRET,
     orgSecret: e.ORG_SECRET,
   };
