@@ -2,50 +2,35 @@
   CAUTION: Running this script will delete formula instances as defined in readme.md, this action is permanent.
 */
 
-require('dotenv').config()
+require('dotenv').config();
 const axios = require('axios');
+const { headers, baseUrl, getEnv } = require('./helpers');
 
-const headers = () => {
-  return {
-    'Authorization': `User ${process.env.USER_SECRET}, Organization ${process.env.ORG_SECRET}`,
-    'content-type': 'application/json'
-  };
-}
+const getInstances = async (templateId, token) => {
+  const { ceEnv, userSecret, orgSecret } = getEnv();
 
-const baseUrl = () => {
-  switch (process.env.CE_ENV) {
-    case "STAGING":
-      return "staging.cloud-elements.com";
-    case "PROD":
-      return "api.cloud-elements.com";
-    case "PROD_EU":
-      return "api.cloud-elements.co.uk";
-  }
-}
-
-const getInstances = async (token) => {
-  let url = `https://${baseUrl()}/elements/api-v2/formulas/${process.env.FORMULA_TEMPLATE_ID}/instances`;
+  let url = `https://${baseUrl(ceEnv)}/elements/api-v2/formulas/${templateId}/instances`;
   if (token) {
     url = `${url}&nextPage=${token}`;
   }
 
   try {
-    const res = await axios.get(url, { headers: headers() });
+    const res = await axios.get(url, { headers: headers(userSecret, orgSecret), timeout: 5000 });
     return res;
   } catch (e) {
     console.error(e);
   }
 };
 
-const getAllInstances = async () => {
+const getPagedInstances = async (templateId) => {
   let results = [];
   let keepGoing = true;
   let nextPageToken;
 
   while (keepGoing) {
-    let res = await getInstances(nextPageToken);
+    let res = await getInstances(templateId, nextPageToken);
 
-    if (res && res.status === 200) { await results.push.apply(results, res.data); }
+    if (res && res.status === 200) { await results.push.apply(results, res.data.map(d => d.id)); }
 
     if (res && res.status === 200 && res.headers["elements-next-page-token"]) {
       nextPageToken = res.headers["elements-next-page-token"]
@@ -54,31 +39,50 @@ const getAllInstances = async () => {
     }
   }
 
-  return results;
+  return { templateId, results: results.flat() };
+};
+
+const getAllInstances = async () => {
+  const { templateIds } = getEnv();
+  return Promise.all(templateIds.map(t => getPagedInstances(t)));
 }
 
-const deleteInstances = (instances) => instances.map(i => deleteInstance(i.id));
+const deleteInstances = async (templateId, instanceIds) => instanceIds.map(i => deleteInstance(templateId, i));
 
-const deleteInstance = async (instanceId) => {
+const deleteInstance = async (templateId, instanceId) => {
+  const { ceEnv, userSecret, orgSecret } = getEnv();
+
   try {
-    await axios.delete(`https://${baseUrl()}/elements/api-v2/formulas/${process.env.FORMULA_TEMPLATE_ID}/instances/${instanceId}`, {
-      headers: headers()
+    await axios.delete(`https://${baseUrl(ceEnv)}/elements/api-v2/formulas/${templateId}/instances/${instanceId}`, {
+      headers: headers(userSecret, orgSecret)
     });
   } catch (e) {
     console.error(`Error: ${e.response.data.message}, requestId: ${e.response.data.requestId}`);
   }
-}
+};
+
+const deleteAllInstances = async (templates) => Promise.all(templates.map(async (t) => {
+  const res = await deleteInstances(t.templateId, t.results);
+  return {templateId: t.templateId, results: res};
+}));
 
 const start = async () => {
-  const mode = process.env.MODE;
-  console.log(`INFO: running script in ${mode} mode.`);
+  const { mode, ceEnv } = getEnv();
+  console.log(`INFO: running script in ${mode} mode for Cloud Elements ${ceEnv}.`);
   
   const instances = await getAllInstances();
-  console.log(`INFO: found ${instances.length} instance(s) to delete.`);
+
+  instances.forEach(i => {
+    console.log(`INFO: Formula template ID ${i.templateId} found ${i.results.length} instance(s).`);
+  });
 
   if (mode === "DELETE") {
-    const deleted = await deleteInstances(instances);
-    console.log(`INFO: successfully deleted ${deleted.length} instance(s).`);
+    const toDelete = instances.filter(i => i.results.length > 0);
+    const deleted = await deleteAllInstances(toDelete);
+
+    deleted.forEach(d => {
+      console.log(`INFO: Formula template ID ${d.templateId} successfully deleted ${d.results.length} instance(s).`);
+    });
   }
 };
 
