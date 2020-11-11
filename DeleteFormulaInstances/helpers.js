@@ -16,7 +16,7 @@ const baseUrl = (ceEnv) => {
   }
 };
 
-const parseTemplateIds = (strFromEnv) => strFromEnv.split(',').map(s => s.trim());
+const parseTemplateIds = (strFromEnv) => strFromEnv.split(',').map(s => parseInt(s.trim()));
 
 const getEnv = () => {
   const e = process.env;

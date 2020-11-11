@@ -4,6 +4,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
+const { checkEnv } = require('./env');
 const { headers, baseUrl, getEnv } = require('./helpers');
 
 const getInstances = async (templateId, token) => {
@@ -86,5 +87,6 @@ const start = async () => {
   }
 };
 
+checkEnv();
 start();
 
