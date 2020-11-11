@@ -12,7 +12,14 @@ Running this script in `DELETE` mode is destructive and irreversible.
 Use node version as defined in `.nvmrc`.  If you currently use nvm to manage node versions, cd into the project directory and run `nvm use`.
 
 ### Dotenv
-Requires a `.env` file in project root, copy the contents of `.env-example` and paste them into your `.env` file.  Fill out each of the fields before running the script.
+Requires a `.env` file in project root, copy the contents of `.env-example` and paste them into your `.env` file.  Fill out each of the fields before running the script.  
+| Key | Value Datatype | Description | Example |
+|-----|-----|------|-----|
+| ORG_SECRET | String | Your organization secret for the CE environment used below | abdc1234 |
+| USER_SECRET | String | Your user secret for the CE environment used below | abdc1234 |
+| CE_ENV | String | One of STAGING, PROD, EU_PROD | STAGING |
+| FORMULA_TEMPLATE_IDS | String | Comma delimited list of formula template IDs | 32970,22183,40815,34203 |
+| MODE | String | Run the script in GET or DELETE mode | GET |
 
 #### Modes
 There are two modes when running the delete script, GET or DELETE (as defined in the `.env` file).
