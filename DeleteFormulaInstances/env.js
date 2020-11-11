@@ -21,7 +21,7 @@ const checkEnv = () => {
   }
 
   env.templateIds.forEach(id => {
-    if (isNaN(id) || typeof id !== 'number') {
+    if (isNaN(id)) {
       console.error(`ERROR: expected value for formula template ID in .env to be integer, but found ${id}.`);
       process.exit(1);
     }
